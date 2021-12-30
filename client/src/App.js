@@ -10,11 +10,17 @@ import ChatSpace from './components/ChatSpace.component';
 import AdditionalFeatures from './components/AdditionalFeatures.component';
 import GoogleLogin from 'react-google-login';
 
-const google_uri = process.env.GOOGLE_URI
+import {
+  buildHandleFailure,
+  buildHandleLogin,
+  buildHandleLogout
+} from './handlers/index'
 
-const endPoint = 'http://localhost:8080';
+const google_uri = process.env.REACT_APP_GOOGLE_URI
 
-const socket = io(endPoint)
+/* const endPoint = 'http://localhost:8080';
+
+const socket = io(endPoint) */
 
 function App() {
   const [username, setUsername] = useState(null)
@@ -23,19 +29,9 @@ function App() {
       ? JSON.parse(localStorage.getItem('loginData'))
       : null
     )
-  const handleFailure = (result) => {
-    alert(result)
-  }
-  const handleLogin = (googleData) => {
-    setLoginData(googleData)
-    localStorage.setItem('loginData', JSON.stringify(googleData))
-    setUsername(googleData.yu.qf)
-  }
-  const handleLogout = () => {
-    localStorage.removeItem('loginData');
-    setLoginData(null);
-    setUsername(null)
-  }
+  const handleFailure = buildHandleFailure()
+  const handleLogin = buildHandleLogin({setUsername, setLoginData})
+  const handleLogout = buildHandleLogout({setUsername, setLoginData})
   // socket.on('received-message', messageReceived => pushMessage(messageReceived))
 
   return (
