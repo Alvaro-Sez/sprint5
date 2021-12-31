@@ -9,7 +9,6 @@ import RoomSpace from './components/RoomSpace.component';
 import ChatSpace from './components/ChatSpace.component';
 import AdditionalFeatures from './components/AdditionalFeatures.component';
 import GoogleLogin from 'react-google-login';
-
 import {
   buildHandleFailure,
   buildHandleLogin,
@@ -40,9 +39,9 @@ function App() {
         <>
         <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
         <Wrapper>
-        <RoomSpace/>
-        <ChatSpace/>
-        <AdditionalFeatures/>
+          <RoomSpace/>
+          <ChatSpace/>
+          <AdditionalFeatures/>
         </Wrapper>
         </>
         )

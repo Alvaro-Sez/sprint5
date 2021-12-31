@@ -23,7 +23,36 @@ export const RoomsSpace = styled.div`
     margin:3px;
     border-radius:10px 0px 0px 10px;
     background-color:#BF4342;
+    display:flex;
+    flex-direction:column;
+    ul{
+        list-style-type: none;
+        margin:0;
+        padding:0;
+        height: 90%;
+    }
+    span{
+        height: 5%;
+        display:flex;
+        justify-content: space-between;
+    }
+    span button {
+        width: 50%;
+    }
 `
+
+export const Room = styled.li`
+    width: 230px;
+    height: 40px;
+    background: lightpink;
+    margin:7px;
+    border:3px solid black;
+    border-radius: 8px;
+    text-align:center;
+    padding-top:10px;
+    font-weight:bold;
+`
+
 
 export const Chat = styled.ul`
     width: 430px;
