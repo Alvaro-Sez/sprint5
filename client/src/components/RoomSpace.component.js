@@ -9,10 +9,9 @@ import {
     buildHandleDeleteRoom
 } from '../handlers/index';
 
-export default function RoomSpace () {
-    const [rooms, setRooms] = useState([1,2,3])
-    const [roomSelected, setRoomSelected] = useState(false)
-
+export default function RoomSpace (props) {
+    const {rooms, setRooms, setRoomSelected } = props
+    
     const handleAddRoom = buildHandleAddRoom({rooms, setRooms})
     const handleDeleteRoom = buildHandleDeleteRoom({rooms, setRooms})
 

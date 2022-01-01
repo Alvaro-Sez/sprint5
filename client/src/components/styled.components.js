@@ -54,12 +54,49 @@ export const Room = styled.li`
 `
 
 
-export const Chat = styled.ul`
-    width: 430px;
+export const Chat = styled.div`
+    width: 470px;
     height: 99%;
     background-color:white;
     margin:3px;
+    display:none;
+    flex-direction:column;
+    ${({active})=> active && `
+        display:flex;
+    `}
 `
+
+export const ChattingSpace = styled.ul`
+    height: 90%;
+    width: 99%;
+    background-color: lightgrey;
+    margin:2px;
+    padding:0;
+`
+
+
+export const WriteMessageSpace = styled.div`
+    height: 10%;
+    width: 98%;
+    border-radius:15px;
+    background-color: lightblue;
+    margin:2px auto;
+    display:flex;
+    input{
+        width:85%;
+        margin:10px;
+        margin-right:0;
+    }
+    button{
+        margin:10px;
+        width:13%;
+        margin-left:5px;
+    }
+`
+
+export const SendMessageButton = styled.button`
+`
+
 export const AdditionalFeaturesContainer = styled.div`
     width:460px;
     margin:3px;
@@ -67,11 +104,7 @@ export const AdditionalFeaturesContainer = styled.div`
     flex-direction:column;
 `
 
-export const WriteMessage = styled.div`
-`
 
-export const SendMessageButton = styled.button`
-`
 
 export const CamSpace = styled.div`
     width: 99%;

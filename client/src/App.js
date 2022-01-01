@@ -22,12 +22,19 @@ const google_uri = process.env.REACT_APP_GOOGLE_URI
 const socket = io(endPoint) */
 
 function App() {
-  const [username, setUsername] = useState(null)
+  const [username, setUsername] = useState(
+    localStorage.getItem('loginData')
+      ? JSON.parse(localStorage.getItem('loginData')).yu.qf
+      : null
+    )
   const [loginData, setLoginData] = useState(
     localStorage.getItem('loginData')
       ? JSON.parse(localStorage.getItem('loginData'))
       : null
     )
+  const [rooms, setRooms] = useState([1,2,3])
+  const [roomSelected, setRoomSelected] = useState(1) 
+
   const handleFailure = buildHandleFailure()
   const handleLogin = buildHandleLogin({setUsername, setLoginData})
   const handleLogout = buildHandleLogout({setUsername, setLoginData})
@@ -39,8 +46,8 @@ function App() {
         <>
         <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
         <Wrapper>
-          <RoomSpace/>
-          <ChatSpace/>
+          <RoomSpace rooms={rooms} setRooms={setRooms} setRoomSelected={setRoomSelected}/>
+          {rooms.map(roomNumber => <ChatSpace roomId={roomNumber} selected={roomSelected} />)}
           <AdditionalFeatures/>
         </Wrapper>
         </>
