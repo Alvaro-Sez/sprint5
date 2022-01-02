@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { io } from 'socket.io-client'
 import {
   Wrapper,
@@ -17,9 +17,9 @@ import {
 
 const google_uri = process.env.REACT_APP_GOOGLE_URI
 
-/* const endPoint = 'http://localhost:8080';
+const endPoint = 'http://localhost:8080';
 
-const socket = io(endPoint) */
+const socket = io(endPoint)
 
 function App() {
   const [username, setUsername] = useState(
@@ -34,11 +34,19 @@ function App() {
     )
   const [rooms, setRooms] = useState([1,2,3])
   const [roomSelected, setRoomSelected] = useState(1) 
-
+  const [randomColors] = useState({
+    randomColor:"#"+((1<<24)*Math.random()|0).toString(16),
+    randomColor2:"#"+((1<<24)*Math.random()|0).toString(16)
+  })
   const handleFailure = buildHandleFailure()
   const handleLogin = buildHandleLogin({setUsername, setLoginData})
   const handleLogout = buildHandleLogout({setUsername, setLoginData})
   // socket.on('received-message', messageReceived => pushMessage(messageReceived))
+  useEffect(()=>{
+  socket.emit('join-room', 1)
+  
+  },[])
+
 
   return (
     loginData 
@@ -46,8 +54,22 @@ function App() {
         <>
         <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
         <Wrapper>
-          <RoomSpace rooms={rooms} setRooms={setRooms} setRoomSelected={setRoomSelected}/>
-          {rooms.map(roomNumber => <ChatSpace roomId={roomNumber} selected={roomSelected} />)}
+          <RoomSpace 
+          socket={socket}
+          rooms={rooms} 
+          setRooms={setRooms} 
+          setRoomSelected={setRoomSelected}
+          roomSelected={roomSelected}/>
+
+          {rooms.map( (roomNumber,index) => 
+          <ChatSpace 
+          randomColor={randomColors.randomColor}
+          randomColor2={randomColors.randomColor2}
+          key={index}
+          userSelected={username} 
+          socket={socket} 
+          roomId={roomNumber} 
+          selected={roomSelected} />)}
           <AdditionalFeatures/>
         </Wrapper>
         </>

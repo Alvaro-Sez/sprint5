@@ -10,7 +10,7 @@ import {
 } from '../handlers/index';
 
 export default function RoomSpace (props) {
-    const {rooms, setRooms, setRoomSelected } = props
+    const {rooms, setRooms, setRoomSelected, roomSelected, socket } = props
     
     const handleAddRoom = buildHandleAddRoom({rooms, setRooms})
     const handleDeleteRoom = buildHandleDeleteRoom({rooms, setRooms})
@@ -26,9 +26,11 @@ export default function RoomSpace (props) {
             </span>
             <ul>
                 {rooms.map( (roomNumber, index) =>
-                    <RoomComponent 
+                    <RoomComponent
+                    socket={socket} 
                     key={index}
                     roomId={roomNumber} 
+                    roomSelected={roomSelected}
                     setRoomSelected={setRoomSelected}/>)}
             </ul>
         </RoomsSpace>

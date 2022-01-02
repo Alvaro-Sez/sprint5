@@ -44,13 +44,17 @@ export const RoomsSpace = styled.div`
 export const Room = styled.li`
     width: 230px;
     height: 40px;
-    background: lightpink;
+    background-color: lightpink;
     margin:7px;
     border:3px solid black;
     border-radius: 8px;
     text-align:center;
     padding-top:10px;
     font-weight:bold;
+    ${({active})=> active && `
+        background-color:black;
+        color:lightpink;
+    `}
 `
 
 
@@ -72,6 +76,11 @@ export const ChattingSpace = styled.ul`
     background-color: lightgrey;
     margin:2px;
     padding:0;
+    list-style-type:none;
+    overflow:scroll;
+    overflow-x: hidden;
+    display:flex;
+    flex-direction:column;
 `
 
 
@@ -86,6 +95,8 @@ export const WriteMessageSpace = styled.div`
         width:85%;
         margin:10px;
         margin-right:0;
+        font-size:16px;
+        font-weight:bold;
     }
     button{
         margin:10px;
@@ -126,6 +137,29 @@ export const SearchHistoryButton = styled.button`
 `
 
 export const Message = styled.li`
+    height: max-content;
+    background-color: #d3ffd8;
+    font-size:16px;
+    border:1px solid black;
+    border-radius:10px;
+    margin:15px;
+    padding:10px;
+    width:70%;
+    align-self:end;
+    padding-top:0;
+    padding-left:5px;
+    display:flex;
+    flex-direction:column;
+    span{
+        width:100px;
+        font-size:14px;
+        font-weight:bolder;
+    }
+    p{
+        font-weight:bold;
+        margin:10px;
+        word-break: break-all;
+    }
 `
 
 export const MyMessage = styled.li`
