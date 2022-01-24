@@ -1,11 +1,11 @@
 run the following commands
 
 
-directory - sprint5/
+folder - sprint5/
 - npm i 
 - npm run devStart
 
-directory - sprint5/client/
+folder - sprint5/client/
 - npm i
 - npm run start
 
